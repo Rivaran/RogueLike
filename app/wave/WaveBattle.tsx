@@ -223,6 +223,7 @@ export function WaveBattle() {
                   <div className="enemy-icon">{e.emoji}</div>
                   <div style={{ fontSize: "0.8rem", fontWeight: 700 }}>{e.name}</div>
                   <div className="enemy-hp">❤️ {e.hp} / {e.maxHp}</div>
+                  <div style={{ fontSize: "0.72rem", color: "#f97316", fontWeight: 700 }}>⚔️ {e.atk}</div>
                   {/* HPバー */}
                   <div style={{ width: "100%", height: 6, background: "#fee2e2", borderRadius: 3 }}>
                     <div style={{ width: `${(e.hp / e.maxHp) * 100}%`, height: "100%", background: "#dc2626", borderRadius: 3 }} />
