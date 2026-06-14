@@ -40,7 +40,10 @@ function makeMap(floor: number): { grid: Cell[][]; enemies: Map<string, Enemy> }
   // ランダムに壁を配置（プレイヤーの出発点(0,0)は空ける）
   for (let r = 0; r < ROWS; r++) {
     for (let c = 0; c < COLS; c++) {
+      // スタート地点(0,0)とその隣は壁にしない
       if (r === 0 && c === 0) continue;
+      if (r === 0 && c === 1) continue;
+      if (r === 1 && c === 0) continue;
       if (Math.random() < 0.18) grid[r][c] = "wall";
     }
   }
