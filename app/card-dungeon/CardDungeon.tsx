@@ -72,13 +72,41 @@ function makeCard(step: number): DungeonCard {
     if (r <= 0) { chosen = type; break; }
   }
 
+  // 敵カード: ダメージを受けるが倒すと必ずドロップ報酬あり（リスク&リターン）
   const enemyList: DungeonCard[] = [
-    { type: "enemy", icon: "👺", name: "オニ",     desc: "強そうな鬼が立ちはだかった！こうげき力次第でダメージが変わる。",
-      effect: p => { const dmg = Math.max(1, 4 - Math.floor(p.atk / 2)); return { player: { ...p, hp: p.hp - dmg }, msg: `👺 オニが現れた！ ${dmg}ダメージ受けた！` }; } },
-    { type: "enemy", icon: "🐺", name: "オオカミ", desc: "素早い狼が飛びかかってくる！",
-      effect: p => { const dmg = Math.max(1, 3 - Math.floor(p.atk / 3)); return { player: { ...p, hp: p.hp - dmg }, msg: `🐺 オオカミが飛びかかった！ ${dmg}ダメージ！` }; } },
-    { type: "enemy", icon: "🕷️", name: "クモ",     desc: "天井から大グモが落ちてきた！",
-      effect: p => { const dmg = Math.max(1, 2 - Math.floor(p.atk / 4)); return { player: { ...p, hp: p.hp - dmg }, msg: `🕷️ 大グモに噛まれた！ ${dmg}ダメージ！` }; } },
+    {
+      type: "enemy", icon: "👺", name: "オニ",
+      desc: "強い！でも倒すとこうげき力+2がもらえる。",
+      effect: p => {
+        const dmg = Math.max(1, 4 - Math.floor(p.atk / 2));
+        return { player: { ...p, hp: p.hp - dmg, atk: p.atk + 2 }, msg: `👺 オニを倒した！ ${dmg}ダメージ受けたが、こうげき力+2！` };
+      },
+    },
+    {
+      type: "enemy", icon: "🐺", name: "オオカミ",
+      desc: "素早い！でも倒すとHP+4回復する。",
+      effect: p => {
+        const dmg = Math.max(1, 3 - Math.floor(p.atk / 3));
+        const heal = 4;
+        return { player: { ...p, hp: Math.min(p.maxHp, p.hp - dmg + heal) }, msg: `🐺 オオカミを倒した！ ${dmg}ダメージ受けたが、HP+${heal}！` };
+      },
+    },
+    {
+      type: "enemy", icon: "🕷️", name: "クモ",
+      desc: "小さくて素早い。倒すとこうげき力+1とHP+2！",
+      effect: p => {
+        const dmg = Math.max(1, 2 - Math.floor(p.atk / 4));
+        return { player: { ...p, hp: Math.min(p.maxHp, p.hp - dmg + 2), atk: p.atk + 1 }, msg: `🕷️ クモを倒した！ ${dmg}ダメージ受けたが、こうげき力+1・HP+2！` };
+      },
+    },
+    {
+      type: "enemy", icon: "👹", name: "デーモン",
+      desc: "超強い！でも倒すと最大HP+6増える！",
+      effect: p => {
+        const dmg = Math.max(2, 6 - Math.floor(p.atk / 2));
+        return { player: { ...p, hp: p.hp - dmg, maxHp: p.maxHp + 6 }, msg: `👹 デーモンを倒した！ ${dmg}ダメージ受けたが、最大HP+6！` };
+      },
+    },
   ];
 
   switch (chosen) {
