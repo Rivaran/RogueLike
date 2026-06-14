@@ -356,8 +356,6 @@ export function GridDungeon() {
     if (!canvas) return;
     canvas.width = W * SCALE;
     canvas.height = H * SCALE;
-    canvas.style.width = `${W}px`;
-    canvas.style.height = `${H}px`;
     initFloor(1);
     draw();
   }, [initFloor, draw]);
