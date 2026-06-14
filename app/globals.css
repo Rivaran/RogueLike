@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root {
+  --bg: #f0f4f8;
+  --surface: #ffffff;
+  --card: rgba(255,255,255,0.92);
+  --border: rgba(99,152,210,0.18);
+  --text: #1a2744;
+  --muted: #64748b;
+  --accent: #2563eb;
+  --accent2: #06b6d4;
+  --shadow-sm: 0 2px 8px rgba(30,64,120,0.08);
+  --shadow-md: 0 8px 28px rgba(30,64,120,0.12);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  min-height: 100%;
+  font-family: 'Inter', 'Yu Gothic UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    radial-gradient(circle at 15% 15%, rgba(37,99,235,0.07) 0%, transparent 45%),
+    radial-gradient(circle at 85% 85%, rgba(6,182,212,0.06) 0%, transparent 45%);
+  pointer-events: none; z-index: 0;
+}
+
+/* ── レイアウト ── */
+.shell {
+  position: relative; z-index: 1;
+  width: min(960px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 32px 0 48px;
+  display: grid; gap: 20px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: var(--shadow-md);
+}
+
+/* ── ホーム ── */
+.home-hero {
+  padding: 40px;
+}
+.home-kicker {
+  font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--accent2); margin-bottom: 10px;
+}
+.home-hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700; letter-spacing: -0.02em;
+  margin-bottom: 10px;
+}
+.home-hero p { color: var(--muted); line-height: 1.75; font-size: 0.95rem; }
+
+.proto-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+.proto-card {
+  display: grid; gap: 10px; padding: 28px;
+  text-decoration: none; color: inherit;
+  border-radius: 20px;
+  transition: transform 160ms, box-shadow 160ms, border-color 160ms;
+}
+.proto-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(30,64,120,0.16);
+  border-color: rgba(37,99,235,0.3);
+}
+.proto-icon { font-size: 2.4rem; }
+.proto-tag {
+  display: inline-flex; width: fit-content;
+  padding: 4px 10px; border-radius: 999px;
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+}
+.tag-grid  { background: rgba(37,99,235,0.1);   color: #1d4ed8; border: 1px solid rgba(37,99,235,0.2); }
+.tag-wave  { background: rgba(16,185,129,0.1);  color: #047857; border: 1px solid rgba(16,185,129,0.2); }
+.tag-card  { background: rgba(236,72,153,0.1);  color: #be185d; border: 1px solid rgba(236,72,153,0.2); }
+.proto-card h2 { font-size: 1.3rem; font-weight: 700; letter-spacing: -0.01em; }
+.proto-card p { font-size: 0.86rem; color: var(--muted); line-height: 1.7; }
+.proto-link { color: var(--accent); font-weight: 700; font-size: 0.88rem; }
+
+/* ── ゲームページ共通 ── */
+.game-shell {
+  display: grid; gap: 14px;
+}
+
+.game-header {
+  display: flex; align-items: center; gap: 10px;
+  padding: 4px 0 10px;
+}
+.game-header h1 {
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-weight: 700; letter-spacing: -0.02em; flex: 1;
+}
+.back-btn {
+  padding: 8px 16px; border-radius: 10px; border: none;
+  background: rgba(100,116,139,0.1); color: var(--muted);
+  font-family: inherit; font-size: 0.85rem; font-weight: 600;
+  cursor: pointer; text-decoration: none;
+  transition: background 140ms;
+}
+.back-btn:hover { background: rgba(100,116,139,0.18); }
+
+.game-layout {
+  display: grid;
+  grid-template-columns: 240px minmax(0,1fr);
+  gap: 14px; align-items: start;
+}
+
+.stat-panel { padding: 20px; display: grid; gap: 12px; }
+.stat-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+}
+.stat-box {
+  background: rgba(37,99,235,0.05);
+  border: 1px solid rgba(37,99,235,0.1);
+  border-radius: 12px; padding: 12px;
+}
+.stat-box span { display: block; font-size: 0.75rem; color: var(--muted); }
+.stat-box strong { display: block; font-size: 1.2rem; margin-top: 4px; }
+
+.log-area {
+  background: rgba(0,0,0,0.03);
+  border: 1px solid var(--border);
+  border-radius: 10px; padding: 10px;
+  font-size: 0.8rem; color: var(--muted);
+  line-height: 1.6; max-height: 160px; overflow-y: auto;
+}
+
+.play-panel { padding: 16px; display: grid; gap: 12px; }
+
+.canvas-wrap {
+  border-radius: 14px; overflow: hidden;
+  border: 1px solid var(--border);
+  background: #eef4fb;
+  display: flex; align-items: center; justify-content: center;
+}
+.canvas-wrap canvas { display: block; }
+
+.btn-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.btn {
+  padding: 10px 20px; border-radius: 12px; border: none;
+  font-family: inherit; font-size: 0.88rem; font-weight: 700;
+  cursor: pointer; transition: transform 120ms, box-shadow 120ms;
+}
+.btn-primary {
+  background: linear-gradient(135deg, #2563eb, #0ea5e9);
+  color: white; box-shadow: 0 4px 14px rgba(37,99,235,0.28);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(37,99,235,0.36); }
+.btn-ghost {
+  background: rgba(255,255,255,0.85); color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-ghost:hover { background: white; }
+
+/* ウェーブバトル用 */
+.enemy-row { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+.enemy-card {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 14px 18px; border-radius: 14px;
+  background: rgba(239,68,68,0.06);
+  border: 1px solid rgba(239,68,68,0.2);
+  cursor: pointer; transition: transform 120ms, background 120ms;
+  min-width: 80px;
+}
+.enemy-card:hover:not(:disabled) { transform: scale(1.05); background: rgba(239,68,68,0.12); }
+.enemy-card:disabled { opacity: 0.4; cursor: default; }
+.enemy-icon { font-size: 2rem; }
+.enemy-hp { font-size: 0.78rem; color: #dc2626; font-weight: 700; }
+
+.upgrade-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(130px,1fr)); gap: 10px; }
+.upgrade-btn {
+  padding: 14px; border-radius: 14px; border: none;
+  background: rgba(37,99,235,0.07); border: 1px solid rgba(37,99,235,0.18);
+  font-family: inherit; cursor: pointer; text-align: center;
+  transition: transform 120ms, background 120ms;
+}
+.upgrade-btn:hover { transform: translateY(-2px); background: rgba(37,99,235,0.14); }
+.upgrade-btn .up-icon { font-size: 1.8rem; margin-bottom: 4px; }
+.upgrade-btn .up-label { font-size: 0.82rem; font-weight: 700; color: var(--text); }
+.upgrade-btn .up-desc { font-size: 0.72rem; color: var(--muted); margin-top: 2px; }
+
+/* カードダンジョン用 */
+.card-area { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.dungeon-card {
+  width: 120px; border-radius: 14px; padding: 16px 10px;
+  background: white; border: 2px solid var(--border);
+  text-align: center; cursor: pointer;
+  transition: transform 160ms, border-color 160ms, box-shadow 160ms;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.dungeon-card:hover:not(:disabled) {
+  transform: translateY(-6px) scale(1.04);
+  border-color: var(--accent);
+  box-shadow: 0 8px 24px rgba(37,99,235,0.2);
+}
+.dungeon-card:disabled { opacity: 0.35; cursor: default; }
+.dungeon-card .card-icon { font-size: 2.2rem; }
+.dungeon-card .card-name { font-size: 0.8rem; font-weight: 700; }
+.dungeon-card .card-desc { font-size: 0.7rem; color: var(--muted); line-height: 1.4; }
+
+.floor-bar {
+  display: flex; gap: 6px; flex-wrap: wrap;
+}
+.floor-step {
+  width: 28px; height: 10px; border-radius: 5px;
+  background: rgba(37,99,235,0.12); border: 1px solid rgba(37,99,235,0.2);
+  transition: background 300ms;
+}
+.floor-step.done { background: #2563eb; border-color: #2563eb; }
+.floor-step.current { background: #06b6d4; border-color: #06b6d4; }
+
+/* レスポンシブ */
+@media (max-width: 700px) {
+  .game-layout { grid-template-columns: 1fr; }
+  .home-hero { padding: 24px 20px; }
+}
