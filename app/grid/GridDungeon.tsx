@@ -375,6 +375,22 @@ export function GridDungeon() {
 
   return (
     <div className="game-layout">
+      {/* キャンバス */}
+      <div className="play-panel card">
+        <div className="canvas-wrap" style={{ background: "#0d1b2a" }}>
+          <canvas ref={canvasRef} style={{ display: "block", touchAction: "none" }} />
+        </div>
+        {/* モバイル用ボタン */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 6, maxWidth: 180, margin: "0 auto" }}>
+          <div />
+          <button className="btn btn-ghost" onClick={() => move(0, -1)} style={{ padding: "10px", fontSize: "1.2rem" }}>↑</button>
+          <div />
+          <button className="btn btn-ghost" onClick={() => move(-1, 0)} style={{ padding: "10px", fontSize: "1.2rem" }}>←</button>
+          <button className="btn btn-ghost" onClick={() => move(0, 1)}  style={{ padding: "10px", fontSize: "1.2rem" }}>↓</button>
+          <button className="btn btn-ghost" onClick={() => move(1, 0)}  style={{ padding: "10px", fontSize: "1.2rem" }}>→</button>
+        </div>
+      </div>
+
       {/* ステータス */}
       <div className="stat-panel card">
         <div style={{ fontSize: "0.75rem", color: "var(--muted)", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.1em" }}>
@@ -411,22 +427,6 @@ export function GridDungeon() {
             ? <span>ダンジョンへ踏み込め！</span>
             : display.log.map((l, i) => <div key={i}>{l}</div>)
           }
-        </div>
-      </div>
-
-      {/* キャンバス */}
-      <div className="play-panel card">
-        <div className="canvas-wrap" style={{ background: "#0d1b2a" }}>
-          <canvas ref={canvasRef} style={{ display: "block", touchAction: "none" }} />
-        </div>
-        {/* モバイル用ボタン */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 6, maxWidth: 180, margin: "0 auto" }}>
-          <div />
-          <button className="btn btn-ghost" onClick={() => move(0, -1)} style={{ padding: "10px", fontSize: "1.2rem" }}>↑</button>
-          <div />
-          <button className="btn btn-ghost" onClick={() => move(-1, 0)} style={{ padding: "10px", fontSize: "1.2rem" }}>←</button>
-          <button className="btn btn-ghost" onClick={() => move(0, 1)}  style={{ padding: "10px", fontSize: "1.2rem" }}>↓</button>
-          <button className="btn btn-ghost" onClick={() => move(1, 0)}  style={{ padding: "10px", fontSize: "1.2rem" }}>→</button>
         </div>
       </div>
     </div>
