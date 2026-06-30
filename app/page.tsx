@@ -25,6 +25,14 @@ const protos = [
     title: "カードダンジョン",
     desc: "ダンジョンを進むたびにカードを引く。カードの効果を判断しながら最深部を目指せ。",
   },
+  {
+    href: "/grid3d",
+    icon: "🏰",
+    tag: "3Dダンジョン",
+    tagClass: "tag-grid",
+    title: "3Dダンジョン",
+    desc: "グリッドダンジョンを3D化。Three.jsで立体的に探索する実験的プロトタイプ。",
+  },
 ];
 
 export default function Home() {
